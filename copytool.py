@@ -3,6 +3,7 @@
 
 import os
 import shutil
+import datetime
 import tkinter as tk
 # import tkinter.filedialog as dialog
 from tkinter import ttk
@@ -62,6 +63,19 @@ class Application(tk.Frame):
         self.rename_btn = ttk.Button(self.frame5, text='名前の変更・コピー')
         self.rename_btn.pack(side=tk.RIGHT)
         # init widget
+        dt = datetime.datetime.now()
+        date = dt.strftime('%Y/%m/%d/')
+        self.date_entry.insert(0, date)
+        self.to_jpg_entry.insert(0, TO_DIR_JPG + date)
+        self.to_mp4_entry.insert(0, TO_DIR_MP4)
+        self.to_jpg_btn['command'] = self.open_jpg_dialog
+        self.to_mp4_btn['command'] = self.open_mp4_dialog
+
+    def open_jpg_dialog(self):
+        pass
+
+    def open_mp4_dialog(self):
+        pass
 
 
 if __name__ == '__main__':
