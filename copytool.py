@@ -78,11 +78,14 @@ class Application(tk.Frame):
 
     def open_jpg_dialog(self):
         choose = dialog.askdirectory(initialdir=TO_DIR_JPG)
-        self.to_jpg_entry.delete(0, tk.END)
-        self.to_jpg_entry.insert(0, choose)
+        if choose:
+            self.to_jpg_entry.delete(0, tk.END)
+            self.to_jpg_entry.insert(0, choose)
 
     def open_mp4_dialog(self):
         choose = dialog.askdirectory(initialdir=TO_DIR_MP4)
+        if not choose:
+            choose = TO_DIR_MP4
         self.to_mp4_entry.delete(0, tk.END)
         self.to_mp4_entry.insert(0, choose)
 
