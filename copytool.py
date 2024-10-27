@@ -5,7 +5,7 @@ import os
 import shutil
 import datetime
 import tkinter as tk
-# import tkinter.filedialog as dialog
+import tkinter.filedialog as dialog
 from tkinter import ttk
 
 FROM_DIR = '/home/yuuichi/Dropbox/カメラアップロード/'
@@ -24,7 +24,6 @@ def copy_files(date, to_dir, kind, new_name):
             shutil.copy2(FROM_DIR + from_file, to_dir + to_file)
             count = count + 1
 
-
 class Application(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
@@ -32,19 +31,19 @@ class Application(tk.Frame):
         # create & layout widget
         self.frame1 = ttk.Frame(self)
         self.frame1.pack(anchor=tk.W)
-        self.from_label1 = ttk.Label(self.frame1, text='コピー元：')
+        self.from_label1 = ttk.Label(self.frame1, text='コピー元　　　　')
         self.from_label2 = ttk.Label(self.frame1, text=FROM_DIR)
         self.from_label1.pack(side=tk.LEFT)
         self.from_label2.pack(side=tk.LEFT)
         self.frame2 = ttk.Frame(self)
         self.frame2.pack(anchor=tk.W)
-        self.date_label = ttk.Label(self.frame2, text='日付：')
-        self.date_entry = ttk.Entry(self.frame2, width=12)
+        self.date_label = ttk.Label(self.frame2, text='コピーする日付　')
+        self.date_entry = ttk.Entry(self.frame2, width=10)
         self.date_label.pack(side=tk.LEFT)
         self.date_entry.pack(side=tk.LEFT)
         self.frame3 = ttk.Frame(self)
         self.frame3.pack(anchor=tk.W)
-        self.to_jpg_label = ttk.Label(self.frame3, text='コピー先（写真）：')
+        self.to_jpg_label = ttk.Label(self.frame3, text='コピー先（写真）')
         self.to_jpg_entry = ttk.Entry(self.frame3, width=40)
         self.to_jpg_btn = ttk.Button(self.frame3, text='参照')
         self.to_jpg_label.pack(side=tk.LEFT)
@@ -52,15 +51,14 @@ class Application(tk.Frame):
         self.to_jpg_btn.pack(side=tk.LEFT)
         self.frame4 = ttk.Frame(self)
         self.frame4.pack(anchor=tk.W)
-        self.to_mp4_label = ttk.Label(self.frame4, text='コピー先（動画）：')
+        self.to_mp4_label = ttk.Label(self.frame4, text='コピー先（動画）')
         self.to_mp4_entry = ttk.Entry(self.frame4, width=40)
         self.to_mp4_btn = ttk.Button(self.frame4, text='参照')
         self.to_mp4_label.pack(side=tk.LEFT)
         self.to_mp4_entry.pack(side=tk.LEFT)
-        self.to_mp4_btn.pack(side=tk.LEFT)
         self.frame5 = ttk.Frame(self)
         self.frame5.pack(anchor=tk.W)
-        self.new_name_label = ttk.Label(self.frame5, text='新しい名前：')
+        self.new_name_label = ttk.Label(self.frame5, text='新しい名前　　　')
         self.new_name_entry = ttk.Entry(self.frame5, width=30)
         self.new_name_label.pack(side=tk.LEFT)
         self.new_name_entry.pack(side=tk.LEFT)
@@ -68,6 +66,7 @@ class Application(tk.Frame):
         self.frame6.pack(anchor=tk.E)
         self.rename_btn = ttk.Button(self.frame6, text='名前の変更・コピー')
         self.rename_btn.pack(side=tk.RIGHT)
+        self.to_mp4_btn.pack(side=tk.LEFT)
         # init widget
         dt = datetime.datetime.now()
         date = dt.strftime('%Y/%m/%d')
@@ -78,10 +77,14 @@ class Application(tk.Frame):
         self.to_mp4_btn['command'] = self.open_mp4_dialog
 
     def open_jpg_dialog(self):
-        pass
+        choose = dialog.askdirectory(initialdir=TO_DIR_JPG)
+        self.to_jpg_entry.delete(0, tk.END)
+        self.to_jpg_entry.insert(0, choose)
 
     def open_mp4_dialog(self):
-        pass
+        choose = dialog.askdirectory(initialdir=TO_DIR_MP4)
+        self.to_mp4_entry.delete(0, tk.END)
+        self.to_mp4_entry.insert(0, choose)
 
 
 if __name__ == '__main__':
