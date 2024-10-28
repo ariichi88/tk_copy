@@ -13,6 +13,16 @@ TO_DIR_JPG = '/home/yuuichi/Dropbox/Photo/'
 TO_DIR_MP4 = '/home/yuuichi/Dropbox/Video/MyMovies/'
 
 
+def is_exist(old_name, kind):
+    files = [f for f in os.listdir(FROM_DIR) if old_name in f]
+    count = 0
+    for file in enumerate(files):
+        _, ext = os.path.splitext(file)
+        if kind in ext:
+            count = count + 1
+    return count
+
+
 def copy_files(date, to_dir, kind, new_name):
     from_files = [f for f in os.listdir(FROM_DIR) if date in f]
     from_files.sort()
@@ -79,15 +89,18 @@ class Application(tk.Frame):
     def open_jpg_dialog(self):
         choose = dialog.askdirectory(initialdir=TO_DIR_JPG)
         if choose:
+            date = self.date_entry.get()
             self.to_jpg_entry.delete(0, tk.END)
-            self.to_jpg_entry.insert(0, choose)
+            self.to_jpg_entry.insert(0, choose + '/'+ date)
 
     def open_mp4_dialog(self):
         choose = dialog.askdirectory(initialdir=TO_DIR_MP4)
-        if not choose:
-            choose = TO_DIR_MP4
-        self.to_mp4_entry.delete(0, tk.END)
-        self.to_mp4_entry.insert(0, choose)
+        if choose:
+            self.to_mp4_entry.delete(0, tk.END)
+            self.to_mp4_entry.insert(0, choose)
+
+    def rename_copy_files(self):
+        print('rename copy')
 
 
 if __name__ == '__main__':
