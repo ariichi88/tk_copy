@@ -6,6 +6,7 @@ import shutil
 import datetime
 import tkinter as tk
 import tkinter.filedialog as dialog
+import tkinter.messagebox as message
 from tkinter import ttk
 
 FROM_DIR = '/home/yuuichi/Dropbox/カメラアップロード/'
@@ -101,8 +102,22 @@ class Application(tk.Frame):
             self.to_mp4_entry.insert(0, choose)
 
     def rename_copy_files(self):
-        print('rename copy')
-
+        old_name = self.date_entry.get().replace('/', '-')
+        to_jpg = self.to_jpg_entry.get()
+        to_mp4 = self.to_mp4_entry.get()
+        new_name = self.new_name_entry.get()
+        if is_exist(old_name, 'jpg'):
+            if os.path.exists(to_jpg):
+                message.showerror('エラー', 'そのディレクトリはすでに存在します')
+            else:
+                os.makedirs(to_jpg)
+                copy_files(old_name, to_jpg, 'jpg', new_name)
+        else:
+            message.showerror('エラー', '指定した日付の写真はあえりません')
+        if is_exist(old_name, 'mp4'):
+            copy_files(old_name, to_mp4, 'mp4', new_name)
+        else:
+            message.showerror('エラー', '指定した日付の動画はありません')
 
 if __name__ == '__main__':
     root = tk.Tk()
