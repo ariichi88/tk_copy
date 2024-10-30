@@ -9,22 +9,22 @@ import tkinter.filedialog as dialog
 from tkinter import ttk
 
 FROM_DIR = '/home/yuuichi/Dropbox/カメラアップロード/'
-TO_DIR_JPG = '/home/yuuichi/Dropbox/Photo/'
-TO_DIR_MP4 = '/home/yuuichi/Dropbox/Video/MyMovies/'
+TO_DIR_JPG = '/home/yuuichi/Photo/'
+TO_DIR_MP4 = '/home/yuuichi/Video/MyMovies/'
 
 
 def is_exist(old_name, kind):
     files = [f for f in os.listdir(FROM_DIR) if old_name in f]
     count = 0
-    for file in enumerate(files):
+    for _, file in enumerate(files):
         _, ext = os.path.splitext(file)
         if kind in ext:
             count = count + 1
     return count
 
 
-def copy_files(date, to_dir, kind, new_name):
-    from_files = [f for f in os.listdir(FROM_DIR) if date in f]
+def copy_files(old_name, to_dir, kind, new_name):
+    from_files = [f for f in os.listdir(FROM_DIR) if old_name in f]
     from_files.sort()
     count = 1
     for _, from_file in enumerate(from_files):
@@ -66,6 +66,7 @@ class Application(tk.Frame):
         self.to_mp4_btn = ttk.Button(self.frame4, text='参照')
         self.to_mp4_label.pack(side=tk.LEFT)
         self.to_mp4_entry.pack(side=tk.LEFT)
+        self.to_mp4_btn.pack(side=tk.LEFT)
         self.frame5 = ttk.Frame(self)
         self.frame5.pack(anchor=tk.W)
         self.new_name_label = ttk.Label(self.frame5, text='新しい名前　　　')
