@@ -10,7 +10,7 @@ from tkinter import ttk
 
 FROM_DIR = '/home/yuuichi/Dropbox/カメラアップロード/'
 TO_DIR_JPG = '/home/yuuichi/Photo/'
-TO_DIR_MP4 = '/home/yuuichi/Video/MyMovies/'
+TO_DIR_MP4 = '/home/yuuichi/Videos/MyMovies/'
 
 
 def is_exist(old_name, kind):
