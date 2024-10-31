@@ -28,9 +28,6 @@ FROM_DIR　=>　/home/*username*/Dropbox/カメラアップロード
 TO_DIR_JPG　=>　/home/*username*/photo
 TO_DIR_MP4　=>　/home/*username*/Videos
 
-```
-vim photo.py
-```
 実行権（パーミッション）の変更 
 ```
 chmod +x copytool.py
