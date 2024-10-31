@@ -9,9 +9,9 @@ import tkinter.filedialog as dialog
 import tkinter.messagebox as message
 from tkinter import ttk
 
-FROM_DIR = '/home/yuuichi/Dropbox/カメラアップロード/'
-TO_DIR_JPG = '/home/yuuichi/Photo/'
-TO_DIR_MP4 = '/home/yuuichi/Videos/MyMovies/'
+FROM_DIR = '/home/username/Dropbox/カメラアップロード/'
+TO_DIR_JPG = '/home/username/Photo/'
+TO_DIR_MP4 = '/home/username/Videos/MyMovies/'
 
 
 def is_exist(old_name, kind):
@@ -87,6 +87,7 @@ class Application(tk.Frame):
         self.to_mp4_entry.insert(0, TO_DIR_MP4)
         self.to_jpg_btn['command'] = self.open_jpg_dialog
         self.to_mp4_btn['command'] = self.open_mp4_dialog
+        self.rename_btn['command'] = self.rename_copy_files
 
     def open_jpg_dialog(self):
         choose = dialog.askdirectory(initialdir=TO_DIR_JPG)
@@ -113,7 +114,7 @@ class Application(tk.Frame):
                 os.makedirs(to_jpg)
                 copy_files(old_name, to_jpg, 'jpg', new_name)
         else:
-            message.showerror('エラー', '指定した日付の写真はあえりません')
+            message.showerror('エラー', '指定した日付の写真はありません')
         if is_exist(old_name, 'mp4'):
             copy_files(old_name, to_mp4, 'mp4', new_name)
         else:
