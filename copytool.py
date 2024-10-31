@@ -35,6 +35,7 @@ def copy_files(old_name, to_dir, kind, new_name):
             shutil.copy2(FROM_DIR + from_file, to_dir + to_file)
             count = count + 1
 
+
 class Application(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
@@ -109,7 +110,7 @@ class Application(tk.Frame):
         new_name = self.new_name_entry.get()
         if is_exist(old_name, 'jpg'):
             if os.path.exists(to_jpg):
-                message.showerror('エラー', 'そのディレクトリはすでに存在します')
+                message.showerror('エラー', 'すでにインポート済みです')
             else:
                 os.makedirs(to_jpg)
                 copy_files(old_name, to_jpg, 'jpg', new_name)
@@ -119,6 +120,7 @@ class Application(tk.Frame):
             copy_files(old_name, to_mp4, 'mp4', new_name)
         else:
             message.showerror('エラー', '指定した日付の動画はありません')
+
 
 if __name__ == '__main__':
     root = tk.Tk()
