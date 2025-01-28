@@ -22,7 +22,7 @@ copytool.pyをパスの等っている場所にコピー
 cp copytool.py /hoge/fuga
 ```
 FromDirとToDirの設定  
-copytool.pyをエディタで開きつぎの定数を設定  
+copytool.pyをエディタで開き次の定数を設定  
 例  
 FROM_DIR　=>　/home/*username*/Dropbox/カメラアップロード
 TO_DIR_JPG　=>　/home/*username*/photo
