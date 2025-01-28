@@ -10,8 +10,8 @@ import tkinter.messagebox as message
 from tkinter import ttk
 
 FROM_DIR = '/home/yuuichi/Dropbox/カメラアップロード/'
-TO_DIR_JPG = '/home/yuuichi/Photo/'
-TO_DIR_MP4 = '/home/yuuichi/Videos/MyMovies/'
+TO_DIR_JPG = '/home/yuuichi/Dropbox/Photo/'
+TO_DIR_MP4 = '/home/yuuichi/Dropbox/Videos/MyMovies/'
 
 
 def is_exist(old_name, kind):
