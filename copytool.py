@@ -9,9 +9,9 @@ import tkinter.filedialog as dialog
 import tkinter.messagebox as message
 from tkinter import ttk
 
-FROM_DIR = '/home/username/Dropbox/カメラアップロード/'
-TO_DIR_JPG = '/home/username/Photo/'
-TO_DIR_MP4 = '/home/username/Videos/MyMovies/'
+FROM_DIR = '/home/yuuichi/Dropbox/カメラアップロード/'
+TO_DIR_JPG = '/home/yuuichi/Photo/'
+TO_DIR_MP4 = '/home/yuuichi/Videos/MyMovies/'
 
 
 def is_exist(old_name, kind):
