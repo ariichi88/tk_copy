@@ -7,6 +7,7 @@ import datetime
 import tkinter as tk
 import tkinter.filedialog as dialog
 import tkinter.messagebox as message
+from time import sleep
 from tkinter import ttk
 
 FROM_DIR = '/home/yuuichi/Dropbox/カメラアップロード/'
@@ -82,9 +83,10 @@ class Application(tk.Frame):
         self.to_mp4_btn.pack(side=tk.LEFT)
         # init widget
         dt = datetime.datetime.now()
-        date = dt.strftime('%Y/%m/%d')
-        self.date_entry.insert(0, date)
-        self.to_jpg_entry.insert(0, TO_DIR_JPG + date + '/')
+        var = tk.StringVar()
+        var.set(dt.strftime('%Y/%m/%d'))
+        self.date_entry.insert(0, var.get())
+        self.to_jpg_entry.insert(0, TO_DIR_JPG + var.get() + '/')
         self.to_mp4_entry.insert(0, TO_DIR_MP4)
         self.to_jpg_btn['command'] = self.open_jpg_dialog
         self.to_mp4_btn['command'] = self.open_mp4_dialog
@@ -115,11 +117,11 @@ class Application(tk.Frame):
                 os.makedirs(to_jpg)
                 copy_files(old_name, to_jpg, 'jpg', new_name)
         else:
-            message.showerror('エラー', '指定した日付の写真はありません')
+            message.showerror('エラー', '取り込む写真がありませんでした')
         if is_exist(old_name, 'mp4'):
             copy_files(old_name, to_mp4, 'mp4', new_name)
         else:
-            message.showerror('エラー', '指定した日付の動画はありません')
+            message.showerror('エラー', '取り込む動画がありませんでした')
 
 
 if __name__ == '__main__':
