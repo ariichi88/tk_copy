@@ -7,7 +7,6 @@ import datetime
 import tkinter as tk
 import tkinter.filedialog as dialog
 import tkinter.messagebox as message
-from time import sleep
 from tkinter import ttk
 
 FROM_DIR = '/home/yuuichi/Dropbox/カメラアップロード/'
@@ -52,8 +51,10 @@ class Application(tk.Frame):
         self.frame2.pack(anchor=tk.W)
         self.date_label = ttk.Label(self.frame2, text='コピーする日付　')
         self.date_entry = ttk.Entry(self.frame2, width=10)
+        self.date_change_btn = ttk.Button(self.frame2, text='反映')
         self.date_label.pack(side=tk.LEFT)
         self.date_entry.pack(side=tk.LEFT)
+        self.date_change_btn.pack(side=tk.LEFT)
         self.frame3 = ttk.Frame(self)
         self.frame3.pack(anchor=tk.W)
         self.to_jpg_label = ttk.Label(self.frame3, text='コピー先（写真）')
@@ -83,14 +84,19 @@ class Application(tk.Frame):
         self.to_mp4_btn.pack(side=tk.LEFT)
         # init widget
         dt = datetime.datetime.now()
-        var = tk.StringVar()
-        var.set(dt.strftime('%Y/%m/%d'))
-        self.date_entry.insert(0, var.get())
-        self.to_jpg_entry.insert(0, TO_DIR_JPG + var.get() + '/')
+        date = dt.strftime('%Y/%m/%d')
+        self.date_entry.insert(0, date)
+        self.to_jpg_entry.insert(0, TO_DIR_JPG + date + '/')
         self.to_mp4_entry.insert(0, TO_DIR_MP4)
+        self.date_change_btn['command'] = self.change_date_entry
         self.to_jpg_btn['command'] = self.open_jpg_dialog
         self.to_mp4_btn['command'] = self.open_mp4_dialog
         self.rename_btn['command'] = self.rename_copy_files
+
+    def change_date_entry(self):
+        var = TO_DIR_JPG + self.date_entry.get() + '/'
+        self.to_jpg_entry.delete(0, tk.END)
+        self.to_jpg_entry.insert(0, var)
 
     def open_jpg_dialog(self):
         choose = dialog.askdirectory(initialdir=TO_DIR_JPG)
