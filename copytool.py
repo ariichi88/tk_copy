@@ -116,18 +116,18 @@ class Application(tk.Frame):
         to_jpg = self.to_jpg_entry.get()
         to_mp4 = self.to_mp4_entry.get()
         new_name = self.new_name_entry.get()
-        if is_exist(old_name, 'jpg'):
+        count_jpg = is_exist(old_name, 'jpg')
+        count_mp4 = is_exist(old_name, 'mp4')
+        if count_jpg:
             if os.path.exists(to_jpg):
-                message.showerror('エラー', 'すでにインポート済みです')
+                message.showerror('エラー', '写真はすでにインポート済みです')
             else:
                 os.makedirs(to_jpg)
                 copy_files(old_name, to_jpg, 'jpg', new_name)
-        else:
-            message.showerror('エラー', '取り込む写真がありませんでした')
-        if is_exist(old_name, 'mp4'):
+        if count_mp4:
             copy_files(old_name, to_mp4, 'mp4', new_name)
-        else:
-            message.showerror('エラー', '取り込む動画がありませんでした')
+        result = '写真を{}個\n動画を{}個\nコピーしました'.format(count_jpg, count_mp4)
+        message.showinfo('コピー結果', result)
 
 
 if __name__ == '__main__':
