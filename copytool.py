@@ -121,6 +121,7 @@ class Application(tk.Frame):
         if count_jpg:
             if os.path.exists(to_jpg):
                 message.showerror('エラー', '写真はすでにインポート済みです')
+                count_jpg = 0
             else:
                 os.makedirs(to_jpg)
                 copy_files(old_name, to_jpg, 'jpg', new_name)
