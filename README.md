@@ -24,8 +24,8 @@ cp copytool.py /hoge/fuga
 FromDirとToDirの設定  
 copytool.pyをエディタで開き次の定数を設定  
 例  
-FROM_DIR　=>　/home/*username*/Dropbox/カメラアップロード
-TO_DIR_JPG　=>　/home/*username*/photo
+FROM_DIR　=>　/home/*username*/Dropbox/カメラアップロード  
+TO_DIR_JPG　=>　/home/*username*/photo  
 TO_DIR_MP4　=>　/home/*username*/Videos
 
 実行権（パーミッション）の変更 
