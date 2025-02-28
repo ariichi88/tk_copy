@@ -32,6 +32,8 @@ TO_DIR_MP4　=>　/home/*username*/Videos
 ```
 chmod +x copytool.py
 ```
+## その他
+私はこれを実行ファイル化して使用しています。  
 
 ## 最後に
 Ubuntuを使用していてDropboxとShotwellを使用している人しか関係しませんが良ければ使ってみてください。  
