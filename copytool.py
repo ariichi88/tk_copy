@@ -120,7 +120,7 @@ class Application(tk.Frame):
         count_mp4 = is_exist(old_name, 'mp4')
         if count_jpg:
             if os.path.exists(to_jpg):
-                message.showerror('エラー', '対象ディレクトリが存在します')
+                message.showerror('エラー', 'インポートできません')
                 count_jpg = 0
             else:
                 os.makedirs(to_jpg)
