@@ -10,7 +10,7 @@ Ubuntu上でDropboxとShotwellを使用
 
 ## 準備
 Shotwell 設定で「ライブラリのディレクトリで新規ファイルを監視する」にチェックを入れてください
-> 現在上記設定をしても自動的にインポートできません（Ubuntu24.04LTS）  
+> flatpakのshotwellではインポートできません  
 
 Dropbox カメラアップロードを使用してください  
 
