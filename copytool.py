@@ -127,6 +127,9 @@ class Application(tk.Frame):
                 copy_files(old_name, to_jpg, 'jpg', new_name)
         if count_mp4:
             copy_files(old_name, to_mp4, 'mp4', new_name)
+        if not count_jpg and not count_mp4:
+            message.showinfo('コピー結果', 'コピーするファイルがありません')
+            return
         result = '写真を{}個\n動画を{}個\nコピーしました'.format(count_jpg, count_mp4)
         message.showinfo('コピー結果', result)
 
