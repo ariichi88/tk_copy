@@ -118,6 +118,9 @@ class Application(tk.Frame):
         new_name = self.new_name_entry.get()
         count_jpg = is_exist(old_name, 'jpg')
         count_mp4 = is_exist(old_name, 'mp4')
+        if not new_name.strip():
+            message.showwarning('警告', '新しい名前を入力してください')
+            return
         if count_jpg:
             if os.path.exists(to_jpg):
                 message.showerror('エラー', 'インポートできませんでした')
