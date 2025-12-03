@@ -103,7 +103,7 @@ class Application(tk.Frame):
         if choose:
             date = self.date_entry.get()
             self.to_jpg_entry.delete(0, tk.END)
-            self.to_jpg_entry.insert(0, choose + '/'+ date)
+            self.to_jpg_entry.insert(0, choose + '/' + date)
 
     def open_mp4_dialog(self):
         choose = dialog.askdirectory(initialdir=TO_DIR_MP4)
